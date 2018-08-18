@@ -1,0 +1,6 @@
+<h1>{{ word.word_text }}</h1>
+<ul>
+{% for meaning in word.meaning_set.all %}
+    <li>{{ meaning.meaning_text }}</li>
+{% endfor %}
+</ul>
