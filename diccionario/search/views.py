@@ -38,7 +38,7 @@ def new_word(request):
                 origin = Origin(origin_text=request.POST['origin'])
                 origin.save()
 
-            word = Word(word_text=request.POST['word'], pub_date=timezone.now(), word_meaning=meaning.id, word_example=example.id, word_origin=origin.id)
+            word = Word(word_text=request.POST['word'], pub_date=timezone.now(), word_meaning=meaning, word_example=example, word_origin=origin)
             word.save()
     else:
         form = NewWord()
