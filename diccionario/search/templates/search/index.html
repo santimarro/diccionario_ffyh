@@ -3,7 +3,7 @@
 <div class="container grey lighten-3 rcorners2" style="padding:20px; margin-top:100px;">
   <h4 class="grey-text text-darken-3 center-align">Agregar palabra</h4>
   <div class="black-text">
-    <form action="/new_word" method="POST">
+    <form action="/search/new/" method="POST">
       {%csrf_token%}
       <b class="left-align black-text">{{form.word.label}}:</b>
       {{form.word}}<br>
@@ -15,9 +15,6 @@
       {{form.origin}}<br>
     <button type="submit" class="btn waves-effect green" name="button"><i class="material-icons right">send</i>Enviar</button>
   </form>
-
-
-
   </div>
 </div>
 {% if latest_word_list %}
