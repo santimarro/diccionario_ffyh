@@ -1,7 +1,8 @@
 {% extends "base.html" %} {% block content %}
 
-<div class="container grey lighten-3 rcorners2" style="padding:20px; margin-top:100px;">
-  <h4 class="grey-text text-darken-3 center-align">Agregar palabra</h4>
+<div class="container grey lighten-3 rcorners2" style="padding:20px; margin-top:100px; margin-bottom:50px;">
+  <h4 class="grey-text text-darken-3 center-align">Añadir palabra</h4>
+  <p class="center-align">Completa el siguiente formulario para añadir una nueva palabra<p>
   <div class="black-text">
     <form action="/search/new/" method="POST">
       {%csrf_token%}
@@ -17,14 +18,4 @@
   </form>
   </div>
 </div>
-{% if latest_word_list %}
-<ul>
-  {% for word in latest_word_list %}
-  <li><a href="{% url 'search:detail' word.id %}">{{ word.word_text }}</a></li>
-  {% endfor %}
-</ul>
-{% else %}
-<div class="container">
-  <p>No hay palabras disponibles.</p>
-</div>
-{% endif %} {% endblock %} {% block javascript %} {% endblock %}
+{% endblock %} {% block javascript %} {% endblock %}
