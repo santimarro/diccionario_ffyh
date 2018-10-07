@@ -1,17 +1,22 @@
 {% extends "base.html" %} {% block content %}
-<div class="container">
-  <a class="btn btn-large" href="/search/new/">Agregar Palabra</a>
-<h3>Últimas palabras añadidas:</h3>
-{% if latest_word_list %}
-<ul>
-  {% for word in latest_word_list %}
-  <li><a href="{% url 'search:detail' word.id %}"><h5>{{ word.word_text }}</h5></a></li>
-  {% endfor %}
-</ul>
-{% else %}
-<div class="container">
-  <p>No hay palabras disponibles.</p>
-</div>
-{% endif %}
-</div>
+  <div class="container" style="margin-top:50px; height:100vh;">
+    <div class="row">
+      <div class="col l2 s12">
+        <a class="btn btn-large green rcorners3" href="/search/new/">Agregar Palabra</a>
+      </div>
+      <div class="col l10 s12">
+        <h4 class="center-align">Últimas palabras añadidas:</h4> {% if latest_word_list %}
+        <div class="row center-align grey lighten-3 rcorners2" style="padding:20px;">
+          {% for word in latest_word_list %}
+          <div class="col l2"><a href="{% url 'search:detail' word.id %}" class="white black-text btn" style="margin-top:20px;">{{ word.word_text }}</a></div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="container">
+          <p>No hay palabras disponibles.</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 {% endblock %} {% block javascript %} {% endblock %}

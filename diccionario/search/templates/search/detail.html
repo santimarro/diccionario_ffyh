@@ -1,6 +1,24 @@
-<h1>{{ word.word_text }}</h1>
-<ul>
-{% for meaning in word.meaning_set.all %}
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <a class="btn btn-small waves-effect waves-light grey rcorners3" onclick="goBack()"><i class="material-icons left">arrow_back</i>Volver</a>
+  <h3>Palabra: {{ word.word_text }}</h3>
+  <br>
+  {{ word.word_meaning }}
+  <br>
+  {{ word.word_examples }}
+  <br>
+  {{ word.word_origin }}
+  <ul>
+    {% for meaning in word.meaning_set.all %}
     <li>{{ meaning.meaning_text }}</li>
-{% endfor %}
-</ul>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %} {% block javascript %}
+
+<script>
+function goBack() {
+          window.history.back();
+      }
+</script>
+{% endblock %}
