@@ -1,3 +1,5 @@
+{% extends "base.html" %} {% block content %}
+
 {% if latest_word_list %}
     <ul>
     {% for word in latest_word_list %}
@@ -7,3 +9,5 @@
 {% else %}
     <p>No words are available.</p>
 {% endif %}
+
+{% endblock %} {% block javascript %} {% endblock %}
