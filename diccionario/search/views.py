@@ -20,7 +20,7 @@ def index(request):
 def detail(request, word_id):
     word = get_object_or_404(Word, pk=word_id)
     count = Word.objects.all().count()
-    rand_ids = sample(range(1, count), 5)
+    rand_ids = sample(range(1, count), 4)
     random_words = Word.objects.filter(id__in=rand_ids)
 
     return render(request, 'search/detail.html', {'word': word, 'random_words': random_words})
