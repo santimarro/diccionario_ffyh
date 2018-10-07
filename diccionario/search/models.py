@@ -33,6 +33,7 @@ class Word(models.Model):
     word_examples = models.ForeignKey(Example, on_delete=models.CASCADE, default=None)
     word_origin = models.ForeignKey(Origin, on_delete=models.CASCADE, default=None)
     pub_date = models.DateTimeField('date published')
+    approved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.word_text

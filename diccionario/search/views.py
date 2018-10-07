@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.http import Http404
 from .models import Word, Meaning, Example, Origin
@@ -19,6 +19,28 @@ def index(request):
 def detail(request, word_id):
     word = get_object_or_404(Word, pk=word_id)
     return render(request, 'search/detail.html', {'word': word})
+
+
+def aprobar(request):
+    if request.user.is_superuser:
+        if request.method == "POST":
+            form = ApproveWords(request.POST)
+            if form.is_valid():
+                for wid in request.POST['approved_list']:
+                    word = Word.objects.get(pk=wid)
+                    word.approved = True
+                    word.save()
+
+                for wid in request.POST['delete_list']:
+                    word = Word.objects.get(pk=wid)
+                    word.delete()
+        else:
+            form = ApproveWords()
+        return render(request, 'search/aprobar.html', {'form': form})
+    else:
+        redirect('/search')
+
+
 
 
 def new_word(request):
