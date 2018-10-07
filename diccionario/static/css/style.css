@@ -1,0 +1,495 @@
+@font-face {
+    font-family: 'Avenir Next';
+    src: url("/static/fonts/avenir/AvenirNextLTPro-Regular.otf");
+}
+
+body{
+  font-family: "Avenir Next", Helvetica, Arial, sans-serif;
+}
+p {
+  font-size: 20px;
+}
+nav{
+	box-shadow: none;
+}
+nav a {
+  color: white !important;
+}
+#sidenav-overlay{
+  z-index: 996;
+}
+
+.slider_principal {
+    background-image: url("/media/detroitport.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: calc(100vh + 94px);
+    width: 100%;
+    background-position: 50% 25%;
+    /* filter:drop-shadow(8px 8px 10px gray); */
+}
+
+.servicios_index {
+    background-image: url("/media/servicios_index.jpg");
+    background-repeat: no-repeat;
+    min-height: 70vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.info_background {
+    background-image: url("/media/detroitservices.jpg");
+    background-repeat: no-repeat;
+    min-height: 70vh;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+@media only screen and (max-width: 700px){
+  .info_background {
+    background: -webkit-linear-gradient(to bottom, #479A52, #68AFE0) !important;
+    background: -moz-linear-gradient(to bottom, #479A52, #68AFE0 ) !important;
+    background: -o-linear-gradient(to bottom, #479A52, #68AFE0 ) !important;
+    background: linear-gradient(to bottom, #479A52, #68AFE0) !important;
+    background-image: none;
+  }
+}
+
+.owl-carousel .owl-item img {
+  display: initial !important;
+}
+
+.center {
+    text-align: center !important;
+}
+
+.textoPortada {
+  margin-top: 200px;
+  font-size: 30px;
+  line-height: 1.2;
+  text-align: left;
+  font-weight: bold;
+}
+
+.active-page {
+  font-weight: 900;
+  font-size: large;
+}
+
+.color_mb {
+  background-color: #FF4824;
+}
+
+.color_mb_negro {
+  background: -webkit-linear-gradient(to right,#00BD6A, #00A597 ) !important;
+  background: -moz-linear-gradient(to right,#00BD6A, #00A597  ) !important;
+  background: -o-linear-gradient(to right,#00BD6A, #00A597  ) !important;
+  background: linear-gradient(to right, #0093C4, #00536F ) !important;
+  transition: .4s;
+}
+
+.transparent {
+	background-color: transparent !important;
+  transition: .4s;
+}
+
+.btn:hover, .btn-large:hover {
+    background-color: #1A1A1A;
+}
+
+.rcorners1 {
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.rcorners2 {
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.rcorners3 {
+    border-radius: 5px;
+}
+
+.gradient {
+    background: -webkit-linear-gradient(to right, #D9D9D9, #E9E9E9) !important;
+    background: -moz-linear-gradient(to right, #D9D9D9, #E9E9E9) !important;
+    background: -o-linear-gradient(to right, #D9D9D9, #E9E9E9) !important;
+    background: linear-gradient(to right, #D9D9D9, #E9E9E9) !important;
+  }
+
+
+.container {
+  margin: 0 auto;
+  max-width: 1980px;
+  width: 85%;
+}
+
+.propiedad-desc {
+  background-color: white;
+  padding: 5px 30px !important;
+}
+
+.propiedad-desc p {
+  margin-bottom: 0;
+  margin-top: 30px;
+  font-size: 20px;
+}
+
+.propiedad-desc b {
+  font-size: 18px;
+  color: #5b5b5b;
+}
+
+.table-propiedad {
+  margin-top: 10px;
+}
+
+.metros-span span {
+  top: 12px;
+  right: 12px;
+  bottom: auto !important;
+  left: auto !important;
+  background-color: #00000077;
+  padding: 10px !important;
+}
+
+.contact_slider {
+  background-image: url("/media/info_index.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  width: 100%;
+  background-position: 0 25%;
+  filter:drop-shadow(8px 8px 10px gray);
+}
+
+div.transbox {
+    margin: 0;
+    background-color: #000000;
+    border: 1px solid black;
+    opacity: 0.3;
+    width: 100%;
+    height: 500px;
+    filter: alpha(opacity=30);
+    position: absolute;
+}
+
+.texto_seccion {
+  position: relative;
+  margin-top: 400px;
+  font-size: 60px;
+  line-height: 1.2;
+  text-align: center;
+  font-weight: bold;
+}
+
+.texto_seccion_atraccion {
+  position: relative;
+  margin-top: 350px;
+  font-size: 60px;
+  line-height: 1.2;
+  text-align: center;
+  font-weight: bold;
+}
+
+.texto_historia {
+  position: relative;
+  margin-top: 200px;
+  font-size: 60px;
+  line-height: 1.2;
+  text-align: center;
+  font-weight: bold;
+}
+
+blockquote {
+  font-size: 30px;
+}
+
+textarea {
+  height: 200px;
+}
+
+.inversiones_slider {
+  background-image: url("/media/inversiones_background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  width: 100%;
+  background-position: 0 70%;
+  filter:drop-shadow(8px 8px 10px gray);
+  filter:grayscale(70%);
+}
+
+.historia_slider {
+  background-image: url("/media/ford-factory.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  width: 100%;
+  background-position: 0 70%;
+  filter:drop-shadow(8px 8px 10px gray);
+  filter:grayscale(70%);
+}
+
+.historia_portada {
+  background-image: url("/media/historiaPortada.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  width: 100%;
+  background-position: 0 70%;
+  filter:drop-shadow(8px 8px 10px gray);
+}
+
+.quehacer_slider {
+  background-image: url("/media/slider_quehacer.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  width: 100%;
+  background-position: 0 100%;
+  filter:drop-shadow(8px 8px 10px gray);
+  filter:grayscale(70%);
+}
+
+.quehacer_slider2 {
+  background-image: url("/media/slider_quehacer.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  width: 100%;
+  background-position: 0 100%;
+  filter:drop-shadow(8px 8px 10px gray);
+  filter:grayscale(70%);
+}
+
+.servicios_slider {
+  background-image: url("/media/portadanosotros.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  width: 100%;
+  background-position: 24% 45%;
+  /* filter:drop-shadow(8px 8px 10px gray);
+  filter:grayscale(70%); */
+}
+
+.bkg_proceso {
+  background-color: #F2F2F2;
+}
+
+.propiedades_slider {
+  background-image: url("/media/info_index.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  width: 100%;
+  background-position: 50% 81%;
+  filter:drop-shadow(8px 8px 10px gray);
+  filter:grayscale(50%);
+}
+
+.gallery {
+  padding-top: 20px;
+}
+
+.empresas {
+  padding-top: 50px !important;
+}
+
+@media only screen and (max-width: 1800px){
+  .propiedades-destacadas p {
+    font-size: 17px;
+  }
+  .propiedades-destacadas h4 {
+    font-size: 25px;
+  }
+  .propiedades-destacadas {
+    padding: 20px 0px;
+  }
+  .propiedades-destacadas b.price {
+    font-size: 25px !important;
+  }
+}
+
+@media only screen and (max-width: 1625px){
+  .section {
+    padding: 30px !important;
+  }
+}
+
+@media only screen and (max-width: 1380px){
+  .section h4 {
+    font-size: 27px !important;
+  }
+  .section p {
+    font-size: 16px;
+  }
+  .propiedades-destacadas p {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 1245px){
+  .section h4 {
+    font-size: 24px !important;
+  }
+  .section p {
+    font-size: 15px;
+  }
+  .propiedades-destacadas p {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 1105px){
+  .section h4 {
+    font-size: 27px !important;
+  }
+  .section p {
+    font-size: 18px;
+  }
+  .texto_seccion_atraccion {
+    margin-top: 300px;
+  }
+  .propiedades-destacadas p {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 495px){
+  .texto_seccion.two_lines {
+    margin-top: 350px;
+  }
+  .texto_seccion {
+    font-size: 50px;
+  }
+  .date {
+    width: 15% !important;
+    left: 41% !important;
+  }
+}
+
+.messages .success {
+  padding: 10px;
+  color: white;
+  background-color: #35CC36;
+}
+
+.messages .error {
+  padding: 10px;
+  color: white;
+  background-color: #CC2C24;
+}
+
+#sync1 .item {
+  background: url("/media/casa_ejemplo1.jpg");
+  width: 100%;
+  height: 650px;
+  color: #FFF;
+  border-radius: 3px;
+  text-align: center;
+  filter:drop-shadow(8px 8px 10px gray);
+}
+#sync1 .item2 {
+  background: url("/media/casa_ejemplo2.jpg");
+  width: 100%;
+  height: 650px;
+  color: #FFF;
+  border-radius: 3px;
+  text-align: center;
+  filter:drop-shadow(8px 8px 10px gray);
+}
+#sync1 .item3 {
+  background: url("/media/casa_ejemplo3.jpg");
+  width: 100%;
+  height: 650px;
+  color: #FFF;
+  border-radius: 3px;
+  text-align: center;
+  filter:drop-shadow(8px 8px 10px gray);
+}
+#sync1 .item4 {
+  background: url("/media/cas_ejemplo4.jpg");
+  width: 100%;
+  height: 650px;
+  color: #FFF;
+  border-radius: 3px;
+  text-align: center;
+  filter:drop-shadow(8px 8px 10px gray);
+}
+.owl-theme .owl-nav {
+  /*default owl-theme theme reset .disabled:hover links */
+}
+.owl-theme .owl-nav [class*='owl-'] {
+  transition: all 0.3s ease;
+}
+.owl-theme .owl-nav [class*='owl-'].disabled:hover {
+  background-color: #D6D6D6;
+}
+#sync1.owl-theme {
+  position: relative;
+}
+#sync1.owl-theme .owl-next,
+#sync1.owl-theme .owl-prev {
+  width: 22px;
+  height: 40px;
+  margin-top: -20px;
+  position: absolute;
+  top: 50%;
+}
+#sync1.owl-theme .owl-prev {
+  left: 10px;
+}
+#sync1.owl-theme .owl-next {
+  right: 10px;
+}
+
+.section {
+  padding: 150px;
+}
+
+.info_background p {
+  font-size: 16px;
+}
+
+.explora p {
+  text-align: justify;
+}
+
+.overlay {
+  position: absolute;
+  height: 250px;
+  margin: 0 !important;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.floated.right{
+    float: right;
+    width: 50%;
+    padding: 20px;
+}
+.floated.left{
+    float: left;
+    width: 50%;
+    padding: 20px;
+}
+
+@media only screen and (max-width: 920px){
+  .floated{
+    width: 100% !important;
+  }
+}
