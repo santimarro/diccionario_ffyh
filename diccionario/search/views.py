@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.http import Http404
-from .models import Word, Meaning, Example
+from .models import Word, Meaning, Example, Origin
 from django.template import loader
 from django.utils import timezone
 from .forms import NewWord
@@ -32,7 +32,7 @@ def new_word(request):
                 example = Example(example_text=request.POST['example'])
                 example.save()
             if request.POST['origin']:
-                origin = Origin(example_text=request.POST['origin'])
+                origin = Origin(origin_text=request.POST['origin'])
                 origin.save()
 
             word = Word(word_text=request.POST['word'], pub_date=timezone.now(), word_meaning=meaning.id, word_example=example.id, word_origin=origin.id)
