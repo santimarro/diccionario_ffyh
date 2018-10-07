@@ -22,6 +22,9 @@ def detail(request, word_id):
 
 
 def new_word(request):
+    latest_word_list = Word.objects.order_by('-pub_date')[:5]
+    context = {'latest_word_list': latest_word_list}
+
     if request.method == "POST":
         form = NewWord(request.POST)
         if form.is_valid():
@@ -39,4 +42,4 @@ def new_word(request):
             word.save()
     else:
         form = NewWord()
-        return render(request, 'search/new_word.html', {'form': form})
+        return render(request, 'search/new_word.html', {'form': form}, context)
