@@ -5,6 +5,7 @@ from .models import Word, Meaning, Example, Origin
 from django.template import loader
 from django.utils import timezone
 from .forms import NewWord
+from random import sample
 
 
 # Create your views here.
@@ -18,7 +19,11 @@ def index(request):
 
 def detail(request, word_id):
     word = get_object_or_404(Word, pk=word_id)
-    return render(request, 'search/detail.html', {'word': word})
+    count = Word.objecs.all().count()
+    rand_ids = sample(xrange(1, count), 5)
+    random_words = Word.objects.filter(id__in=rand_ids)
+
+    return render(request, 'search/detail.html', {'word': word, 'random_words': random_words})
 
 
 def aprobar(request):
@@ -50,6 +55,11 @@ def new_word(request):
     if request.method == "POST":
         form = NewWord(request.POST)
         if form.is_valid():
+            word_text = request.POST['word']
+            word = Word.objects.filter(word_text=word_text):
+            if word:
+                redirect('/search/' + word[0].id)
+
             meaning = Meaning(meaning_text=request.POST['meaning'])
             meaning.save()
 
