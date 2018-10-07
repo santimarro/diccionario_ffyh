@@ -1,30 +1,17 @@
 {% extends "base.html" %} {% block content %}
-
-<div class="container grey lighten-3 rcorners2" style="padding:20px; margin-top:100px;">
-  <h4 class="grey-text text-darken-3 center-align">Agregar palabra</h4>
-  <div class="black-text">
-    <form action="/search/new/" method="POST">
-      {%csrf_token%}
-      <b class="left-align black-text">{{form.word.label}}:</b>
-      {{form.word}}<br>
-      <b class="left-align">{{form.meaning.label}}:</b>
-      {{form.meaning}}<br>
-      <b class="left-align">{{form.example.label}}:</b>
-      {{form.example}}<br>
-      <b class="left-align">{{form.origin.label}}:</b>
-      {{form.origin}}<br>
-    <button type="submit" class="btn waves-effect green" name="button"><i class="material-icons right">send</i>Enviar</button>
-  </form>
-  </div>
-</div>
+<div class="container">
+  <a class="btn btn-large" href="/search/new/">Agregar Palabra</a>
+<h3>Últimas palabras añadidas:</h3>
 {% if latest_word_list %}
 <ul>
   {% for word in latest_word_list %}
-  <li><a href="{% url 'search:detail' word.id %}">{{ word.word_text }}</a></li>
+  <li><a href="{% url 'search:detail' word.id %}"><h5>{{ word.word_text }}</h5></a></li>
   {% endfor %}
 </ul>
 {% else %}
 <div class="container">
   <p>No hay palabras disponibles.</p>
 </div>
-{% endif %} {% endblock %} {% block javascript %} {% endblock %}
+{% endif %}
+</div>
+{% endblock %} {% block javascript %} {% endblock %}

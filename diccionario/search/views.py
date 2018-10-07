@@ -38,8 +38,8 @@ def new_word(request):
                 origin = Origin(origin_text=request.POST['origin'])
                 origin.save()
 
-            word = Word(word_text=request.POST['word'], pub_date=timezone.now(), word_meaning=meaning, word_example=example, word_origin=origin)
+            word = Word(word_text=request.POST['word'], pub_date=timezone.now(), word_meaning=meaning, word_examples=example, word_origin=origin)
             word.save()
     else:
         form = NewWord()
-        return render(request, 'search/new_word.html', {'form': form}, context)
+    return render(request, 'search/new_word.html', {'form': form}, context)
