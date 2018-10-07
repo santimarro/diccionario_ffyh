@@ -29,9 +29,9 @@ class Word(models.Model):
     Later it may be implemented a related words section.
     '''
     word_text = models.CharField(max_length=30)
-    word_meaning = models.ForeignKey(Meaning, on_delete=models.CASCADE)
-    word_examples = models.ForeignKey(Example, on_delete=models.CASCADE)
-    word_origin = models.ForeignKey(Origin, on_delete=models.CASCADE)
+    word_meaning = models.ForeignKey(Meaning, on_delete=models.CASCADE, default=None)
+    word_examples = models.ForeignKey(Example, on_delete=models.CASCADE, default=None)
+    word_origin = models.ForeignKey(Origin, on_delete=models.CASCADE, default=None)
     pub_date = models.DateTimeField('date published')
 
     def __str__(self):
