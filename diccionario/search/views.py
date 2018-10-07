@@ -19,8 +19,8 @@ def index(request):
 
 def detail(request, word_id):
     word = get_object_or_404(Word, pk=word_id)
-    count = Word.objecs.all().count()
-    rand_ids = sample(xrange(1, count), 5)
+    count = Word.objects.all().count()
+    rand_ids = sample(range(1, count), 5)
     random_words = Word.objects.filter(id__in=rand_ids)
 
     return render(request, 'search/detail.html', {'word': word, 'random_words': random_words})
@@ -56,7 +56,7 @@ def new_word(request):
         form = NewWord(request.POST)
         if form.is_valid():
             word_text = request.POST['word']
-            word = Word.objects.filter(word_text=word_text):
+            word = Word.objects.filter(word_text=word_text)
             if word:
                 redirect('/search/' + word[0].id)
 

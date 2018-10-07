@@ -1,19 +1,19 @@
 {% extends "base.html" %} {% block content %}
-<div class="container">
-  <a class="btn btn-small waves-effect waves-light grey rcorners3" onclick="goBack()"><i class="material-icons left">arrow_back</i>Volver</a>
-  <h3>Palabra: {{ word.word_text }}</h3>
-  <br>
-  {{ word.word_meaning }}
-  <br>
-  {{ word.word_examples }}
-  <br>
-  {{ word.word_origin }}
+<div class="container" style="height:100vh;">
+  <h3>{{ word.word_text }}</h3>
+  <p> 1- {{ word.word_meaning }}</p>
+  <p><b>Ejemplo:</b> "{{ word.word_examples }}"</p>
+  <p><b>Origen:</b> {{ word.word_origin }}</p>
   <ul>
     {% for meaning in word.meaning_set.all %}
-    <li>{{ meaning.meaning_text }}</li>
+    <li>{{ add.meaning_text }}</li>
     {% endfor %}
   </ul>
+  <a class="btn btn-small waves-effect waves-light blue rcorners3" onclick="goBack()" style="margin-bottom:50px;"><i class="material-icons left">arrow_back</i>Volver</a>
+  <a class="btn btn-small waves-effect waves-light green rcorners3" onclick="goBack()" style="margin-bottom:50px;"><i class="material-icons right">add</i>Agregar Significado</a>
+  <h4>Otras palabras visitadas:</h4>
 </div>
+
 {% endblock %} {% block javascript %}
 
 <script>
