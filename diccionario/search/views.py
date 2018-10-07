@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.http import Http404
-from .models import Word
+from .models import Word, Meaning, Example
 from django.template import loader
+from django.utils import timezone
+from .forms import PostForm
 
 
 # Create your views here.
@@ -19,3 +21,17 @@ def detail(request, word_id):
     return render(request, 'search/detail.html', {'word': word})
 
 
+def new_word(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            word = form.save(commit=False)
+            meaning = Meaning(meaning_text=form.meaning)
+            meaning.save()
+            example = Example(example_text=form.example)
+            example.save()
+            word = Word(word_text=form.word, pub_date=timezone.now(), word_meaning=meaning.id, word_example=example.id)
+            word.save()
+    else:
+        form = PostForm()
+        return render(request, 'search/new_word.html', {'form': form})

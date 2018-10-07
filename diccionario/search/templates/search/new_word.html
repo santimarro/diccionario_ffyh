@@ -1,0 +1,9 @@
+{% block content %}
+        <h1>New post</h1>
+        <form method="POST" class="post-form">{% csrf_token %}
+            {{ form.as_p }}
+            Significado: <input type="text" name="meaning"></input>
+            Ejemplo <input type="text" name="example"></input>
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+{% endblock %}
