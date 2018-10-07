@@ -1,0 +1,104 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Diccionario</title>
+	<link rel="shortcut icon" type="image/png" href="/media/favicon.png"/>
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href={% static 'css/materialize.css' %} type="text/css" rel="stylesheet" media="screen,projection" />
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script src={% static 'js/materialize.js' %}></script>
+	<script src={% static 'js/init.js' %}></script>
+	<script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	<!-- Ubicacion css -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+	<meta property="og:title" content="MB Detroit Imbestments"/>
+	<meta property="og:description" content="Surge con el objetivo de conectar nuestros clientes con las mejores oportunidades de inversión en bienes raíces, brindándole un servicio integral a cada cliente. Contamos con una amplia y vasta experiencia, además de una larga trayectoria de casi 20 años en el mercado inmobiliario de Detroit."/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:url" content="https://imbestments.com/"/>
+	<meta property="og:image" content="/media/logo_blanco.png"/>
+	<meta property="og:site_name" content="MB Detroit Imbestments"/>
+	<meta property="og:locale" content="es_ES"/>
+
+	<meta name="description" content="Surge con el objetivo de conectar nuestros clientes con las mejores oportunidades de inversión en bienes raíces, brindándole un servicio integral a cada cliente. Contamos con una amplia y vasta experiencia, además de una larga trayectoria de casi 20 años en el mercado inmobiliario de Detroit.">
+	<meta name="keywords" content="Detroit, inversiones, inversiones en Detroit, comprar en Detroit, invertir en Detroit">
+
+</head>
+
+<body>
+	<!--  NavigationBar-->
+	<div class="navbar-fixed grey">
+		<ul id="dropdown1" class="dropdown-content z-depth-5 rcorners3 grey lighten-3">
+		  <li><a href="/" class="black-text">Historia</a></li>
+		</ul>
+		<nav class="transparent black-text" role="navigation" id="navigation">
+			<div class="nav-wrapper container">
+				<a id="logo-container" href="/search/" class="brand-logo ">
+					<span class="hide-on-med-and-down">Diccionario</span>
+				</a>
+				<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+				<ul id="nav-mobile" class="side-nav">
+          <li><a class="black-text" href="/">Inicio</a></li>
+					<li>
+						<ul class="collapsible collapsible-accordion black-text" data-collapsible="accordion">
+							<li>
+								<a class="collapsible-header waves-effect black-text" style="padding: 0 32px;">Detroit<i class="material-icons right">arrow_drop_down</i></a>
+								<div class="collapsible-body">
+									<ul id="dropdown1">
+									  <li><a href="" class="black-text" style="padding: 0 42px">Historia</a></li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</li>
+
+          <li class="material-icons tooltipped" data-position="down" data-delay="50" data-tooltip=""><a><i class="material-icons grey-text">mail</i></a></li>
+          <li class="material-icons tooltipped" data-position="down" data-delay="50" data-tooltip=""><a><i class="material-icons grey-text">phone</i></a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+	{% block content %}
+  {% endblock %}
+
+  <footer class="page-footer color_mb_negro">
+      <div class="container">
+				<div class="row">
+					<div class="col l3 m12 s12 center-align">
+						<h5>diccionario.com</h5>
+					</div>
+	        <div class="col l9 m12 s12 center-align contact-li">
+						<ul>
+	            <li style="display: inline;margin-left:20px;"><i class="material-icons tiny white-text">mail</i> info@diccionario.com</li>
+	            <li style="display: inline;margin-left:20px;"><i class="material-icons tiny white-text">phone</i> 0351 153421158 (ARG)</li>
+							<li style="display: inline;margin-left:20px;"><i class="material-icons tiny white-text">phone</i> (313) 971 2693 (EEUU)</li>
+	          </ul>
+	        </div>
+			</div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        </div>
+      </div>
+    </footer>
+
+
+  {% block javascript %}
+	{% endblock %}
+	<script>
+
+	</script>
+</body>
+
+</html>
