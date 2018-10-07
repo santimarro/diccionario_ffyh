@@ -25,18 +25,17 @@ def new_word(request):
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
-            word = form.save(commit=False)
-            meaning = Meaning(meaning_text=form.meaning)
+            meaning = Meaning(meaning_text=request.POST['meaning'])
             meaning.save()
             
             if form.example:
-                example = Example(example_text=form.example)
+                example = Example(example_text=request.POST['example'])
                 example.save()
             if form.origin:
-                origin = Origin(example_text=form.origin)
+                origin = Origin(example_text=request.POST['origin'])
                 origin.save()
 
-            word = Word(word_text=form.word, pub_date=timezone.now(), word_meaning=meaning.id, word_example=example.id, word_origin=origin.id)
+            word = Word(word_text=request.POST['word'], pub_date=timezone.now(), word_meaning=meaning.id, word_example=example.id, word_origin=origin.id)
             word.save()
     else:
         form = PostForm()
