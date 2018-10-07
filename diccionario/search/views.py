@@ -28,10 +28,10 @@ def new_word(request):
             meaning = Meaning(meaning_text=request.POST['meaning'])
             meaning.save()
 
-            if form.example:
+            if request.POST['example']:
                 example = Example(example_text=request.POST['example'])
                 example.save()
-            if form.origin:
+            if request.POST['origin']:
                 origin = Origin(example_text=request.POST['origin'])
                 origin.save()
 
