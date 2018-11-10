@@ -20,8 +20,11 @@ def index(request):
 def detail(request, word_id):
     word = get_object_or_404(Word, pk=word_id)
     count = Word.objects.all().count()
-    rand_ids = sample(range(1, count+1), c4 if count >= 4 else count)
-    rand_ids.remove(word.id)
+    rand_ids = sample(range(1, count+1), 4 if count >= 4 else count)
+    try:
+        rand_ids.remove(word.id)
+    except ValueError:
+        pass
     random_words = Word.objects.filter(id__in=rand_ids)
 
     return render(request, 'search/detail.html', {'word': word, 'random_words': random_words})
@@ -30,6 +33,28 @@ def detail(request, word_id):
 def aprobar(request):
     if request.user.is_superuser:
         if request.method == "POST":
+            wid = request.POST['word_id']
+            word = Word.objects.get(pk=wid)
+            word.approved = True
+            word.save()
+        return render(request, 'search/aprobar.html')
+    else:
+        redirect('/search')
+
+def eliminar(request):
+    if request.user.is_superuser:
+        if request.method == "POST":
+            wid = request.POST['word_id']
+            word = Word.objects.get(pk=wid)
+            word.delete()
+        return render(request, 'search/aprobar.html')
+    else:
+        redirect('/search')
+
+def old_aprobar(request):
+    if request.user.is_superuser:
+        if request.method == "POST":
+
             form = ApproveWord(request.POST)
             if form.is_valid():
                 delete = request.POST['delete']
@@ -48,7 +73,7 @@ def aprobar(request):
         redirect('/search')
 
 
-def old_aprobar(request):
+def old_old_aprobar(request):
     if request.user.is_superuser:
         if request.method == "POST":
             form = ApproveWords(request.POST)
