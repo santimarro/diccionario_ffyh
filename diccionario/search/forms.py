@@ -8,3 +8,8 @@ class NewWord(forms.Form):
 	origin = forms.CharField(max_length=30, label="Ingresar origen de la palabra")
 
 
+class ApproveWord(forms.Form):
+	delete = forms.BooleanField()
+	approve = forms.BooleanField()
+	word_id = forms.IntField(required=True)
+

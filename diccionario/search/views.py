@@ -20,7 +20,7 @@ def index(request):
 def detail(request, word_id):
     word = get_object_or_404(Word, pk=word_id)
     count = Word.objects.all().count()
-    rand_ids = sample(range(1, count+1), 4)
+    rand_ids = sample(range(1, count+1), c4 if count >= 4 else count)
     rand_ids.remove(word.id)
     random_words = Word.objects.filter(id__in=rand_ids)
 
@@ -28,6 +28,27 @@ def detail(request, word_id):
 
 
 def aprobar(request):
+    if request.user.is_superuser:
+        if request.method == "POST":
+            form = ApproveWord(request.POST)
+            if form.is_valid():
+                delete = request.POST['delete']
+                approve = request.POST['approve']
+                wid = request.POST['word_id']
+                word = Word.objects.get(pk=wid)
+                if delete:
+                    word.delete()
+                if approve:
+                    word.approved = True
+                    word.save()
+        else:
+            form = ApproveWord()
+        return render(request, 'search/aprobar.html', {'form': form})
+    else:
+        redirect('/search')
+
+
+def old_aprobar(request):
     if request.user.is_superuser:
         if request.method == "POST":
             form = ApproveWords(request.POST)
@@ -45,8 +66,6 @@ def aprobar(request):
         return render(request, 'search/aprobar.html', {'form': form})
     else:
         redirect('/search')
-
-
 
 
 def new_word(request):
@@ -76,3 +95,24 @@ def new_word(request):
     else:
         form = NewWord()
     return render(request, 'search/new_word.html', {'form': form}, context)
+
+
+def search(request):
+  if request.GET:
+    searcher = request.GET["searcher"]
+    number = len(Word.objects.all())
+    words = Word.objects.filter(word_text__contains=searcher)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(words, len(words))
+    try:
+      catalogo = paginator.page(page)
+    except PageNotAnInteger:
+      catalogo = paginator.page(1)
+    except EmptyPage:
+      catalogo = paginator.page(paginator.num_pages)
+    pagscount = paginator.count
+    number = len(Word.objects.all())
+    context = {'busqueda' : words, 'pagscount' : pagscount, 'number' : number}
+  return render(request, "_catalogo.html", context)
+
+
