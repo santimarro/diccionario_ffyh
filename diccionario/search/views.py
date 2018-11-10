@@ -63,7 +63,7 @@ def new_word(request):
             word_text = request.POST['word']
             word = Word.objects.filter(word_text=word_text)
             if word:
-                redirect('/search/' + word[0].id)
+                redirect('/search/' + str(word[0].id))
 
             meaning = Meaning(meaning_text=request.POST['meaning'])
             meaning.save()
