@@ -7,9 +7,9 @@ class NewWord(forms.Form):
 	example = forms.CharField(max_length=200, label="Ingresar ejemplo de uso")
 	origin = forms.CharField(max_length=30, label="Ingresar origen de la palabra")
 
-
+'''
 class ApproveWord(forms.Form):
 	delete = forms.BooleanField()
 	approve = forms.BooleanField()
-	word_id = forms.IntField(required=True)
-
+	word_id = forms.IntegerField(required=True)
+'''
