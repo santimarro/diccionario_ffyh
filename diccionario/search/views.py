@@ -8,9 +8,6 @@ from .forms import NewWord, ApproveWord
 from random import sample
 
 
-# Create your views here.
-
-
 def index(request):
     latest_word_list = Word.objects.filter(approved=True).order_by('-pub_date')[:5]
     context = {'latest_word_list': latest_word_list}
@@ -28,7 +25,6 @@ def detail(request, word_id):
     random_words = Word.objects.filter(id__in=rand_ids)
 
     return render(request, 'search/detail.html', {'word': word, 'random_words': random_words})
-
 
 
 def aprobar(request):
@@ -99,5 +95,24 @@ def search(request):
     number = len(Word.objects.all())
     context = {'busqueda' : words, 'pagscount' : pagscount, 'number' : number}
   return render(request, "_catalogo.html", context)
+
+
+def filter_by_letter(request):
+    if request.GET:
+        letter = request.GET["letter"]
+        number = len(Word.objects.all())
+        words = Word.objects.filter(word_text__startswith=letter)
+        page = request.GET.get('page', 1)
+        paginator = Paginator(words, len(words))
+        try:
+          catalogo = paginator.page(page)
+        except PageNotAnInteger:
+          catalogo = paginator.page(1)
+        except EmptyPage:
+          catalogo = paginator.page(paginator.num_pages)
+        pagscount = paginator.count
+        number = len(Word.objects.all())
+        context = {'busqueda' : words, 'pagscount' : pagscount, 'number' : number}
+    return render(request, "_catalogo.html", context)
 
 
