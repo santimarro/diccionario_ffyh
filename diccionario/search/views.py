@@ -4,7 +4,7 @@ from django.http import Http404
 from .models import Word, Meaning, Example, Origin
 from django.template import loader
 from django.utils import timezone
-from .forms import NewWord
+from .forms import NewWord, ApproveWord
 from random import sample
 
 
@@ -12,7 +12,7 @@ from random import sample
 
 
 def index(request):
-    latest_word_list = Word.objects.order_by('-pub_date')[:5]
+    latest_word_list = Word.objects.filter(approved=True).order_by('-pub_date')[:5]
     context = {'latest_word_list': latest_word_list}
     return render(request, 'search/index.html', context)
 
@@ -30,65 +30,25 @@ def detail(request, word_id):
     return render(request, 'search/detail.html', {'word': word, 'random_words': random_words})
 
 
+
 def aprobar(request):
-    if request.user.is_superuser:
-        if request.method == "POST":
-            wid = request.POST['word_id']
-            word = Word.objects.get(pk=wid)
-            word.approved = True
-            word.save()
-        return render(request, 'search/aprobar.html')
-    else:
-        redirect('/search')
-
-def eliminar(request):
-    if request.user.is_superuser:
-        if request.method == "POST":
-            wid = request.POST['word_id']
-            word = Word.objects.get(pk=wid)
-            word.delete()
-        return render(request, 'search/aprobar.html')
-    else:
-        redirect('/search')
-
-def old_aprobar(request):
     if request.user.is_superuser:
         if request.method == "POST":
 
             form = ApproveWord(request.POST)
             if form.is_valid():
-                delete = request.POST['delete']
-                approve = request.POST['approve']
                 wid = request.POST['word_id']
                 word = Word.objects.get(pk=wid)
-                if delete:
-                    word.delete()
-                if approve:
+                print('HOLAA')
+                if request.POST['button'] == 'aprobar':
                     word.approved = True
                     word.save()
+                else:
+                    word.delete()
         else:
             form = ApproveWord()
-        return render(request, 'search/aprobar.html', {'form': form})
-    else:
-        redirect('/search')
-
-
-def old_old_aprobar(request):
-    if request.user.is_superuser:
-        if request.method == "POST":
-            form = ApproveWords(request.POST)
-            if form.is_valid():
-                for wid in request.POST['approved_list']:
-                    word = Word.objects.get(pk=wid)
-                    word.approved = True
-                    word.save()
-
-                for wid in request.POST['delete_list']:
-                    word = Word.objects.get(pk=wid)
-                    word.delete()
-        else:
-            form = ApproveWords()
-        return render(request, 'search/aprobar.html', {'form': form})
+        context = {'words': Word.objects.filter(approved=False), 'form':form}
+        return render(request, 'search/aprobar.html', context)
     else:
         redirect('/search')
 
