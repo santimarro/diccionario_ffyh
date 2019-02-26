@@ -4,7 +4,7 @@ from django.http import Http404
 from .models import Word, Meaning, Example, Origin
 from django.template import loader
 from django.utils import timezone
-from .forms import NewWord
+from .forms import NewWord, ApproveWord
 from random import sample
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -13,7 +13,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def index(request):
-    latest_word_list = Word.objects.order_by('-pub_date')[:6]
+    # latest_word_list = Word.objects.order_by('-pub_date')[:6]
+    latest_word_list = Word.objects.filter(approved=True).order_by('-pub_date')[:6]
     context = {'latest_word_list': latest_word_list}
     return render(request, 'search/index.html', context)
 
@@ -34,38 +35,17 @@ def aprobar(request):
         if request.method == "POST":
             form = ApproveWord(request.POST)
             if form.is_valid():
-                delete = request.POST['delete']
-                approve = request.POST['approve']
                 wid = request.POST['word_id']
                 word = Word.objects.get(pk=wid)
-                if delete:
-                    word.delete()
-                if approve:
+                if request.POST['button'] == 'aprobar':
                     word.approved = True
                     word.save()
+                elif request.POST['button'] == 'eliminar':
+                    word.delete()
         else:
             form = ApproveWord()
-        return render(request, 'search/aprobar.html', {'form': form})
-    else:
-        redirect('/search')
-
-
-def old_aprobar(request):
-    if request.user.is_superuser:
-        if request.method == "POST":
-            form = ApproveWords(request.POST)
-            if form.is_valid():
-                for wid in request.POST['approved_list']:
-                    word = Word.objects.get(pk=wid)
-                    word.approved = True
-                    word.save()
-
-                for wid in request.POST['delete_list']:
-                    word = Word.objects.get(pk=wid)
-                    word.delete()
-        else:
-            form = ApproveWords()
-        return render(request, 'search/aprobar.html', {'form': form})
+        context = {'words': Word.objects.filter(approved=False), 'form':form}
+        return render(request, 'search/aprobar.html', context)
     else:
         redirect('/search')
 
@@ -103,7 +83,7 @@ def search(request):
   if request.GET:
     searcher = request.GET["searcher"]
     number = len(Word.objects.all())
-    words = Word.objects.filter(word_text__contains=searcher)
+    words = Word.objects.filter(word_text__contains=searcher, approved=True)
     page = request.GET.get('page', 1)
     paginator = Paginator(words, len(words))
     try:
@@ -120,9 +100,11 @@ def search(request):
 def search_letter(request):
   if request.GET:
     searcher = request.GET["searcher"]
+    searcher = searcher.lower()
     number = len(Word.objects.all())
     words = Word.objects.filter(word_text__contains=searcher)
-    wordlist= []
+
+    wordlist = []
     for word in words:
         if str(word).startswith(searcher):
             wordlist.append(word)
