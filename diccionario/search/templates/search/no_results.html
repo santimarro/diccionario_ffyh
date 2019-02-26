@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block content %} {% if pagscount%}
+{% extends "base.html" %} {% block content %}
 
 
 
@@ -39,11 +39,10 @@
     </div>
     <div class="col l10 s12 lighten-4" style="padding-left:25px;">
       <div class="white z-depth-5 rcorners3" style="padding:20px;">
-      <p>Resultados: {{pagscount}}</p>
-      {% endif %} {% for i in busqueda %}
-      <a class="black-text" href="/search/{{i.id}}/" style="margin-top:20px;"><h5>{{i}} <font size="3" style="margin-left:20px;"><u>Definición:</u>&nbsp{{i.word_meaning}}</font></h5></a>
-      <hr>
-      {% endfor %}
+      <p>Resultados: 0</p>
+      <div class="container">
+          <p>No hay palabras disponibles.</p>
+      </div>
     </div>
     </div>
   </div>

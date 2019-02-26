@@ -84,6 +84,9 @@ def search(request):
     searcher = request.GET["searcher"]
     number = len(Word.objects.all())
     words = Word.objects.filter(word_text__contains=searcher, approved=True)
+    # Caso donde no haya palabras que coincidan con la busqueda
+    if len(words) == 0:
+        return render(request, 'search/no_results.html')
     page = request.GET.get('page', 1)
     paginator = Paginator(words, len(words))
     try:
@@ -103,11 +106,13 @@ def search_letter(request):
     searcher = searcher.lower()
     number = len(Word.objects.all())
     words = Word.objects.filter(word_text__contains=searcher)
-
     wordlist = []
     for word in words:
         if str(word).startswith(searcher):
             wordlist.append(word)
+    # Caso donde no haya palabras con esa letra
+    if len(wordlist) == 0:
+        return render(request, 'search/no_results.html')
     page = request.GET.get('page', 1)
     paginator = Paginator(wordlist, len(wordlist))
     try:

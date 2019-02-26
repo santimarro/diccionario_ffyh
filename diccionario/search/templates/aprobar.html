@@ -1,10 +1,14 @@
 {% extends "base.html" %} {% block content %}
 
 <div class="container grey lighten-3 rcorners2" style="padding:20px; margin-top:100px; margin-bottom:50px;">
-  <h4 class="grey-text text-darken-3 center-align">Añadir palabra</h4>
-  <p class="center-align">Completa el siguiente formulario para añadir una nueva palabra<p>
+  <h4 class="grey-text text-darken-3 center-align">Aprobar palabras</h4>
+  <p class="center-align">Acepta las palabras nuevas!<p>
   <div class="black-text">
-    
+    {% if len(words) == 0 %}
+      <div class="container">
+          <p>No hay palabras para aprobar.</p>
+      </div>
+    {% endif %}
     {% for word in words %}
     <p>
       <form action="/search/approve/" method="POST">
@@ -21,4 +25,4 @@
     {%endfor%}
   </div>
 </div>
-{% endblock %} {% block javascript %} {% endblock %}
+{% endblock %} 
