@@ -6,13 +6,14 @@ from django.template import loader
 from django.utils import timezone
 from .forms import NewWord
 from random import sample
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
 
 
 def index(request):
-    latest_word_list = Word.objects.order_by('-pub_date')[:5]
+    latest_word_list = Word.objects.order_by('-pub_date')[:6]
     context = {'latest_word_list': latest_word_list}
     return render(request, 'search/index.html', context)
 
@@ -20,8 +21,9 @@ def index(request):
 def detail(request, word_id):
     word = get_object_or_404(Word, pk=word_id)
     count = Word.objects.all().count()
-    rand_ids = sample(range(1, count+1), c4 if count >= 4 else count)
-    rand_ids.remove(word.id)
+    rand_ids = sample(range(1, count+1), 4 if count >= 4 else count)
+    if  word.id in rand_ids:
+        rand_ids.remove(word.id)
     random_words = Word.objects.filter(id__in=rand_ids)
 
     return render(request, 'search/detail.html', {'word': word, 'random_words': random_words})
@@ -113,6 +115,26 @@ def search(request):
     pagscount = paginator.count
     number = len(Word.objects.all())
     context = {'busqueda' : words, 'pagscount' : pagscount, 'number' : number}
-  return render(request, "_catalogo.html", context)
+  return render(request, "search/results.html", context)
 
-
+def search_letter(request):
+  if request.GET:
+    searcher = request.GET["searcher"]
+    number = len(Word.objects.all())
+    words = Word.objects.filter(word_text__contains=searcher)
+    wordlist= []
+    for word in words:
+        if str(word).startswith(searcher):
+            wordlist.append(word)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(wordlist, len(wordlist))
+    try:
+      catalogo = paginator.page(page)
+    except PageNotAnInteger:
+      catalogo = paginator.page(1)
+    except EmptyPage:
+      catalogo = paginator.page(paginator.num_pages)
+    pagscount = paginator.count
+    number = len(Word.objects.all())
+    context = {'busqueda' : wordlist, 'pagscount' : pagscount, 'number' : number}
+  return render(request, "search/results.html", context)

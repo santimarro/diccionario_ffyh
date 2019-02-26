@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% block content %} {% if pagscount%}
+
+
+
+<div class="grey lighten-2" style=" padding-left:20px; padding-right:20px; padding-top:30px; padding-bottom:30px;">
+  <div class="row">
+    <div class="col l2 s12" style="padding:0px;">
+
+      <div class="white z-depth-5 rcorners3">
+        <form id="searchform" action={% url 'search:search' %} method="GET" style="margin-bottom:40px;">
+          <div class="row" style="margin-bottom:0px !important;">
+            <div class="col s12">
+              <h5 class="center-align"><br><b>Buscar Definiciones:</b></h5>
+              <input class="searchfield" id="searcher" name="searcher" type="text" placeholder="Ingresar palabra">
+            </div>
+          </div>
+          <div class="center-align">
+            <button type="submit" class="btn waves-effect grey"><i class="material-icons right">search</i>Buscar</button>
+          </div>
+        </form>
+        <div class="center-align grey darken-3">
+          <a class="btn red rcorners3" href="/search/new/" style="margin-top:20px; margin-bottom:20px;"><b>Agregar Palabra</b></a>
+        </div>
+      </div>
+
+      <div class="blue z-depth-5 rcorners3 hide-on-med-and-down" style="margin-top:30px; min-height:300px;">
+        <p class="center-align white-text" style="line-height:300px;">Cartel o Publicidad</p>
+      </div>
+      <div class="black z-depth-5 rcorners3 hide-on-med-and-down" style="margin-top:30px; min-height:300px;">
+        <p class="center-align white-text" style="line-height:300px;">Cartel o Publicidad</p>
+      </div>
+
+
+    </div>
+    <div class="col l10 s12 lighten-4" style="padding-left:25px;">
+      <div class="white z-depth-5 rcorners3" style="padding:20px;">
+      <p>Resultados: {{pagscount}}</p>
+      {% endif %} {% for i in busqueda %}
+      <a class="black-text" href="/search/{{i.id}}/" style="margin-top:20px;"><h5>{{i}} <font size="3" style="margin-left:20px;"><u>Definición:</u>&nbsp{{i.word_meaning}}</font></h5></a>
+      <hr>
+      {% endfor %}
+    </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

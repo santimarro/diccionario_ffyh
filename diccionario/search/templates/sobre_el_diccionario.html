@@ -1,0 +1,80 @@
+{% extends "base.html" %} {% block content %}
+<div class="" style="min-height:100vh;">
+
+
+  <div class="grey lighten-2" style=" padding-left:20px; padding-right:20px; padding-top:30px; padding-bottom:30px;">
+    <div class="row">
+      <div class="col l2 s12" style="padding:0px;">
+
+        <div class="white z-depth-5 rcorners3">
+          <form id="searchform" action={% url 'search:search' %} method="GET" style="margin-bottom:40px;">
+            <div class="row" style="margin-bottom:0px !important;">
+              <div class="col s12">
+                <h5 class="center-align"><br><b>Buscar Definiciones:</b></h5>
+                <input class="searchfield" id="searcher" name="searcher" type="text" placeholder="Ingresar palabra">
+              </div>
+            </div>
+            <div class="center-align">
+              <button type="submit" class="btn waves-effect grey"><i class="material-icons right">search</i>Buscar</button>
+            </div>
+          </form>
+          <div class="center-align grey darken-3">
+            <a class="btn red rcorners3" href="/search/new/" style="margin-top:20px; margin-bottom:20px;"><b>Agregar Palabra</b></a>
+          </div>
+        </div>
+
+        <div class="blue z-depth-5 rcorners3 hide-on-med-and-down" style="margin-top:30px; min-height:300px;">
+          <p class="center-align white-text" style="line-height:300px;">Cartel o Publicidad</p>
+        </div>
+        <div class="black z-depth-5 rcorners3 hide-on-med-and-down" style="margin-top:30px; min-height:300px;">
+          <p class="center-align white-text" style="line-height:300px;">Cartel o Publicidad</p>
+        </div>
+
+
+      </div>
+      <div class="col l10 s12 lighten-4" style="padding-left:25px;">
+        <div class="white z-depth-5 rcorners3" style="padding:20px;">
+          <h4><b> Sobre el diccionario </b></h4>
+          <div style="overflow:hidden;" class="hide-on-med-and-up">
+            <img src="/media/diccionario.jpg" class="materialboxed" style="float:left !important; height:30vh; overflow:hidden;" />
+          </div>
+          <div class="hide-on-med-and-down">
+            <img src="/media/diccionario.jpg" class="materialboxed" style="float:left !important; height:30vh; overflow:hidden; margin-right:20px; margin-bottom:5px;" />
+          </div>
+          <p>
+            Empoderarse de la lengua. Otorgarle permiso de existencia a las palabras con las que hablamos y sentimos. Generar una zona de inclusión que levante las barreras en vez de pedir pasaportes. Son algunos de los objetivos y de las ideas subyacentes al “Diccionario
+            sin coronita”.<br><br> El proyecto que impulsa La Sofía Cartonera invita a la comunidad a sumarse en el armado de un glosario de voces de uso cotidiano que no aparecen contempladas en los lexicones que propone la Real Academia
+            Española (RAE).<br><br> Más allá de su nombre juguetón y de la chanza antimonárquica, en alusión a la realeza española, desde la perspectiva de sus impulsores el “Diccionario sin coronita” es una apuesta dirigida a quebrar la subordinación
+            y dar pasos en la dirección de una soberanía lingüística.<br><br> El diccionario sin atributos de realeza es una de las acciones que propone un grupo de docentes, estudiantes y egresados de la Facultad de Filosofía y Humanidades de la Universidad
+            Nacional de Córdoba (UNC) que asumen un posicionamiento crítico frente al VIII Congreso Internacional de la Lengua Española, que se realizará en la ciudad de Córdoba entre el 27 y el 30 de marzo.<br><br> La convocatoria se lanzó desde la página
+            web de la Facultad de Filosofía de la UNC y comenzó a viralizarse en redes sociales. Allí se puede completar un formulario para incluir la palabra elegida. Se debe indicar qué tipo de término es (sustantivo, adjetivo, etcétera), describirlo
+            y agregar modos de uso, usos preferenciales o etimología. Cada entrada puede incluso llevar la firma con el nombre de pila o el seudónimo de quien la propone.<br><br> Se puede participar hasta el 15 de marzo. La única condición es que la palabra
+            elegida no esté definida en los diccionarios de la RAE.
+            <br>
+
+          </p>
+
+          <br>
+          <h4><b> Medios: </b></h4>
+          <div style="padding:20px;">
+            <a target="_blank" href="https://vos.lavoz.com.ar/cultura/impulsan-la-creacion-de-un-diccionario-sin-coronita">
+            <img src="/media/lavoz.png" style="height:60px;" />
+          </a>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+</div>
+
+{% endblock %}
