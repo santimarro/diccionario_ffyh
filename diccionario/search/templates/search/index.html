@@ -3,6 +3,14 @@
 <style>
   /*the container must be positioned relative:*/
 
+  .btn2 {
+      height: auto;
+      min-height: 20px;
+      line-height: 20px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+  }
+
   .autocomplete {
     position: relative;
     display: inline-block;
@@ -81,7 +89,7 @@
         </div>
         {% if request.user.is_superuser %}
         <div class="center-align grey darken-3">
-          <a class="btn red rcorners3" href="/search/approve/" style="margin-top:20px; margin-bottom:20px;"><b>Aprobar Palabras</b></a>
+          <a class="btn green rcorners3" href="/search/approve/" style="margin-top:20px; margin-bottom:20px;"><b>Aprobar Palabras</b></a>
         </div>
         {% endif %}
       </div>
@@ -100,7 +108,7 @@
         <h4 class="left-align">Últimas palabras añadidas:</h4> {% if latest_word_list %}
         <div class="row center-align grey lighten-3 rcorners3" style="padding: 20px; width:100%;">
           {% for word in latest_word_list %}
-          <div class="col l2"><a href="{% url 'search:detail' word.id %}" style="margin-top:10px;" class="white black-text btn waves-effect waves-light"><b>{{ word.word_text }}</b></a></div>
+          <div class="col l2"><a href="{% url 'search:detail' word.id %}" style="margin-top:10px;" class="white black-text btn2 btn waves-effect waves-light"><b>{{ word.word_text }}</b></a></div>
           {% endfor %}
         </div>
         {% else %}
