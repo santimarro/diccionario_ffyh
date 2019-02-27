@@ -19,6 +19,11 @@
         <div class="center-align grey darken-3">
           <a class="btn red rcorners3" href="/search/new/" style="margin-top:20px; margin-bottom:20px;"><b>Agregar Palabra</b></a>
         </div>
+        {% if request.user.is_superuser %}
+        <div class="center-align grey darken-3">
+          <a class="btn green rcorners3" href="/search/approve/" style="margin-top:20px; margin-bottom:20px;"><b>Aprobar Palabras</b></a>
+        </div>
+        {% endif %}
       </div>
 
       <div class="blue  z-depth-5 rcorners3 hide-on-med-and-down" style="margin-top:30px; min-height:300px;">
