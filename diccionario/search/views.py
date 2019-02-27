@@ -32,6 +32,7 @@ def detail(request, word_id):
 
 def aprobar(request):
     if request.user.is_superuser:
+        words = Word.objects.filter(approved=False)
         if request.method == "POST":
             form = ApproveWord(request.POST)
             if form.is_valid():
@@ -44,18 +45,8 @@ def aprobar(request):
                     word.delete()
         else:
             form = ApproveWord()
-            words = Word.objects.filter(approved=False)
-            page = request.GET.get('page', 1)
-            paginator = Paginator(words, len(words))
-            try:
-              catalogo = paginator.page(page)
-            except PageNotAnInteger:
-              catalogo = paginator.page(1)
-            except EmptyPage:
-              catalogo = paginator.page(paginator.num_pages)
-            pagscount = paginator.count
-            number = len(Word.objects.all())
-            context = {'words' : words, 'pagscount' : pagscount, 'number' : number, 'form': form}
+            
+        context = {'words' : words, 'form': form}
         return render(request, 'search/aprobar.html', context)
     else:
         redirect('/search')

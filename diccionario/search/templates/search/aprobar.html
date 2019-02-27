@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block content %} {% if pagscount%}
+{% extends "base.html" %} {% block content %}
 
 
 <div class="grey lighten-2" style=" padding-left:20px; padding-right:20px; padding-top:30px; padding-bottom:30px;">
@@ -49,8 +49,9 @@
         {% else %}
 
         <h5 class="left-align"><b>Acepta las palabras nuevas!</b></h5> {% endif %} 
+        {% if pagscount %}
         <p>Aprobar: {{pagscount}}</p>
-          {% endif %}
+        {% endif %}
         {% for word in words %}
         <div class="grey lighten-3" style="padding:20px; margin-bottom:20px;">
 
