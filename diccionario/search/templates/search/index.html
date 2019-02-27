@@ -100,7 +100,7 @@
         <h4 class="left-align">Últimas palabras añadidas:</h4> {% if latest_word_list %}
         <div class="row center-align grey lighten-3 rcorners3" style="padding: 20px; width:100%;">
           {% for word in latest_word_list %}
-          <div class="col l2"><a href="{% url 'search:detail' word.id %}" style="margin-top:10px;" class="white black-text btn"><b>{{ word.word_text }}</b></a></div>
+          <div class="col l2"><a href="{% url 'search:detail' word.id %}" style="margin-top:10px;" class="white black-text btn waves-effect waves-light"><b>{{ word.word_text }}</b></a></div>
           {% endfor %}
         </div>
         {% else %}
@@ -281,7 +281,7 @@
             <div class="collapsible-header">
               <p><i class="material-icons">adjust</i><b>{{ word.word_text }}:&nbsp </b> {{ word.word_meaning }}</p>
             </div>
-            <div class="collapsible-body"><span><b><u>Ejemplo:</u></b>"&nbsp{{ word.word_examples }}" <u><br><b>Origen:</b></u>&nbsp{{ word.word_origin }}</span></div>
+            <div class="collapsible-body"><a class="black-text" href="/search/{{word.id}}"><span><b><u>Ejemplo:</u></b>"&nbsp{{ word.word_examples }}" <u><br><b>Origen:</b></u>&nbsp{{ word.word_origin }}</span></a></div>
           </li>
           {%endfor%}
         </ul>

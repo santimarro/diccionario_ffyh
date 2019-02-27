@@ -86,7 +86,8 @@ def search(request):
     words = Word.objects.filter(word_text__contains=searcher, approved=True)
     # Caso donde no haya palabras que coincidan con la busqueda
     if len(words) == 0:
-        return render(request, 'search/no_results.html')
+        context = {'busqueda' : searcher}
+        return render(request, 'search/no_results.html', context)
     page = request.GET.get('page', 1)
     paginator = Paginator(words, len(words))
     try:
