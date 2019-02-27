@@ -64,9 +64,6 @@ def new_word(request):
             if word:
                 redirect('/search/' + word[0].id)
 
-            meaning = Meaning(meaning_text=request.POST['meaning'])
-            meaning.save()
-
             if request.POST['example']:
                 example = Example(example_text=request.POST['example'])
                 example.save()
@@ -74,8 +71,14 @@ def new_word(request):
                 origin = Origin(origin_text=request.POST['origin'])
                 origin.save()
 
-            word = Word(word_text=request.POST['word'], pub_date=timezone.now(), word_meaning=meaning, word_examples=example, word_origin=origin)
+            word = Word(word_text=request.POST['word'], pub_date=timezone.now(), word_examples=example, word_origin=origin)
             word.save()
+
+            all_meanings = request.POST['meaning']
+            meanings = []
+            for m in all_meanings:
+                meaning = Meaning(meaning_text=m, word=word)
+                meaning.save()
     else:
         form = NewWord()
     return render(request, 'search/new_word.html', {'form': form}, context)
