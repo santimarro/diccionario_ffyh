@@ -44,7 +44,18 @@ def aprobar(request):
                     word.delete()
         else:
             form = ApproveWord()
-        context = {'words': Word.objects.filter(approved=False), 'form':form}
+            words = Word.objects.filter(approved=False)
+            page = request.GET.get('page', 1)
+            paginator = Paginator(words, len(words))
+            try:
+              catalogo = paginator.page(page)
+            except PageNotAnInteger:
+              catalogo = paginator.page(1)
+            except EmptyPage:
+              catalogo = paginator.page(paginator.num_pages)
+            pagscount = paginator.count
+            number = len(Word.objects.all())
+            context = {'words' : words, 'pagscount' : pagscount, 'number' : number, 'form': form}
         return render(request, 'search/aprobar.html', context)
     else:
         redirect('/search')
