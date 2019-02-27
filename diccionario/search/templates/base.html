@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Diccionario</title>
-	<link rel="shortcut icon" type="image/png" href="/media/favicon.png"/>
+	<link rel="shortcut icon" type="image/png" href="/media/favicon.png" />
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href={% static 'css/materialize.css' %} type="text/css" rel="stylesheet" media="screen,projection" />
@@ -19,17 +19,18 @@
 	<script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
 
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
 	<!-- Ubicacion css -->
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-	<meta property="og:title" content="MB Detroit Imbestments"/>
-	<meta property="og:description" content="Surge con el objetivo de conectar nuestros clientes con las mejores oportunidades de inversión en bienes raíces, brindándole un servicio integral a cada cliente. Contamos con una amplia y vasta experiencia, además de una larga trayectoria de casi 20 años en el mercado inmobiliario de Detroit."/>
-	<meta property="og:type" content="website"/>
-	<meta property="og:url" content="https://imbestments.com/"/>
-	<meta property="og:image" content="/media/logo_blanco.png"/>
-	<meta property="og:site_name" content="MB Detroit Imbestments"/>
-	<meta property="og:locale" content="es_ES"/>
+	<meta property="og:title" content="MB Detroit Imbestments" />
+	<meta property="og:description" content="Surge con el objetivo de conectar nuestros clientes con las mejores oportunidades de inversión en bienes raíces, brindándole un servicio integral a cada cliente. Contamos con una amplia y vasta experiencia, además de una larga trayectoria de casi 20 años en el mercado inmobiliario de Detroit."
+	/>
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://imbestments.com/" />
+	<meta property="og:image" content="/media/logo_blanco.png" />
+	<meta property="og:site_name" content="MB Detroit Imbestments" />
+	<meta property="og:locale" content="es_ES" />
 
 	<meta name="description" content="Surge con el objetivo de conectar nuestros clientes con las mejores oportunidades de inversión en bienes raíces, brindándole un servicio integral a cada cliente. Contamos con una amplia y vasta experiencia, además de una larga trayectoria de casi 20 años en el mercado inmobiliario de Detroit.">
 	<meta name="keywords" content="Detroit, inversiones, inversiones en Detroit, comprar en Detroit, invertir en Detroit">
@@ -40,7 +41,7 @@
 	<!--  NavigationBar-->
 	<div class="navbar-fixed grey">
 		<ul id="dropdown1" class="dropdown-content z-depth-5 rcorners3 grey lighten-3">
-		  <li><a href="/" class="black-text">Historia</a></li>
+			<li><a href="/" class="black-text">Historia</a></li>
 		</ul>
 		<nav class="red darken-1 black-text" role="navigation" id="navigation">
 			<div class="nav-wrapper " style="padding-left: 20px; padding-right:20px;">
@@ -49,27 +50,18 @@
 				</a>
 				<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 				<ul class="right hide-on-med-and-down">
-          <li><a href="/" class="white-text"><b>Inicio</b></a></li>
-          <li><a href="/sobre_el_diccionario" class="white-text"><b>Sobre el Diccionario</b></a></li>
-          <li><a href="/search/new" class="black-text btn green" style="text-transform: capitalize; color: white !important">Agregar Palabra</a></li>
-        </ul>
+					<li><a href="/" class="white-text"><b>Inicio</b></a></li>
+					<li><a href="/sobre_el_diccionario" class="white-text"><b>Sobre el Diccionario</b></a></li>
+					<li><a href="/search/new" class="black-text btn green" style="text-transform: capitalize; color: white !important">Añadir Palabra</a></li>
+				</ul>
 				<ul id="nav-mobile" class="side-nav">
-          <li><a class="black-text" href="/">Inicio</a></li>
+					<li><a class="black-text" href="/"><b>Inicio</b></a></li>
 					<li>
 						<ul class="collapsible collapsible-accordion black-text" data-collapsible="accordion">
-							<li>
-								<a class="collapsible-header waves-effect black-text" style="padding: 0 32px;">Detroit<i class="material-icons right">arrow_drop_down</i></a>
-								<div class="collapsible-body">
-									<ul id="dropdown1">
-									  <li><a href="" class="black-text" style="padding: 0 42px">Historia</a></li>
-									</ul>
-								</div>
-							</li>
+							<li><a href="/sobre_el_diccionario" class="black-text"><b>Sobre el Diccionario</b></a></li>
+							<li><a href="/search/new" class="black-text btn green" style="text-transform: capitalize; color: white !important">Añadir Palabra</a></li>
 						</ul>
 					</li>
-
-          <li class="material-icons tooltipped" data-position="down" data-delay="50" data-tooltip=""><a><i class="material-icons grey-text">mail</i></a></li>
-          <li class="material-icons tooltipped" data-position="down" data-delay="50" data-tooltip=""><a><i class="material-icons grey-text">phone</i></a></li>
 				</ul>
 			</div>
 			<div class="orange darken-1" style="height:10px;">
@@ -78,35 +70,32 @@
 
 	</div>
 
-	{% block content %}
-  {% endblock %}
+	{% block content %} {% endblock %}
 
-  <footer class="page-footer red">
-      <div class="container">
-				<div class="row">
-					<div class="col l3 m12 s12 center-align">
-						<h5>diccionario.com</h5>
-					</div>
-	        <div class="col l9 m12 s12 center-align contact-li">
-						<ul>
-	            <li style="display: inline;margin-left:20px;"><i class="material-icons tiny white-text">mail</i> info@diccionario.com</li>
-	            <li style="display: inline;margin-left:20px;"><i class="material-icons tiny white-text">phone</i> 0351 153421158 (ARG)</li>
-							<li style="display: inline;margin-left:20px;"><i class="material-icons tiny white-text">phone</i> (313) 971 2693 (EEUU)</li>
-	          </ul>
-	        </div>
+	<footer class="page-footer red">
+		<div class="container">
+			<div class="row">
+				<div class="col l3 m12 s12 center-align">
+					<h5>diccionario.com</h5>
+				</div>
+				<div class="col l9 m12 s12 center-align contact-li">
+					<ul>
+						<li style="display: inline;margin-left:20px;"><i class="material-icons tiny white-text">mail</i> info@diccionario.com</li>
+						<li style="display: inline;margin-left:20px;"><i class="material-icons tiny white-text">phone</i> 0351 153421158 (ARG)</li>
+						<li style="display: inline;margin-left:20px;"><i class="material-icons tiny white-text">phone</i> (313) 971 2693 (EEUU)</li>
+					</ul>
+				</div>
 			</div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-        </div>
-      </div>
-    </footer>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+			</div>
+		</div>
+	</footer>
 
 
-  {% block javascript %}
-	{% endblock %}
+	{% block javascript %} {% endblock %}
 	<script>
-
 	</script>
 </body>
 
