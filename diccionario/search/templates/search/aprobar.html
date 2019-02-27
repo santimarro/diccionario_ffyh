@@ -22,7 +22,7 @@
         </div>
         {% if request.user.is_superuser %}
         <div class="center-align grey darken-3">
-          <a class="btn red rcorners3" href="/search/approve/" style="margin-top:20px; margin-bottom:20px;"><b>Aprobar Palabras</b></a>
+          <a class="btn green rcorners3" href="/search/approve/" style="margin-top:20px; margin-bottom:20px;"><b>Aprobar Palabras</b></a>
         </div>
         {% endif %}
       </div>
@@ -48,7 +48,7 @@
         </div>
         {% else %}
 
-        <h5 class="left-align"><b>Acepta las palabras nuevas!</b></h5> {% endif %} 
+        <h5 class="left-align"><b>Acepta las palabras nuevas!</b></h5> {% endif %}
         {% for word in words %}
         <div class="grey lighten-3" style="padding:20px; margin-bottom:20px;">
 
