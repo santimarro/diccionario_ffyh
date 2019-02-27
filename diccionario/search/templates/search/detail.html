@@ -42,7 +42,9 @@
 
 
         <h3>{{ word.word_text }}</h3>
-        <p> 1- {{ word.word_meaning }}</p>
+        {% for meaning in meanings %}
+        <p> {{forloop.counter}}- {{ meaning.meaning_text }}</p>
+        {% endfor %}
         <p><b>Ejemplo:</b> "{{ word.word_examples }}"</p>
         <p><b>Origen:</b> {{ word.word_origin }}</p>
         <ul>

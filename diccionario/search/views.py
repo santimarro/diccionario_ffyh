@@ -13,21 +13,29 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def index(request):
+    context = {}
     # latest_word_list = Word.objects.order_by('-pub_date')[:6]
     latest_word_list = Word.objects.filter(approved=True).order_by('-pub_date')[:6]
-    context = {'latest_word_list': latest_word_list}
+    word_list = []
+    print(latest_word_list)
+    for word in latest_word_list:
+        meaning = Meaning.objects.filter(word__pk=word.pk).first()
+        word_list.append((word,meaning))
+    context['latest_word_list'] = word_list
     return render(request, 'search/index.html', context)
 
 
 def detail(request, word_id):
+    context = {}
     word = get_object_or_404(Word, pk=word_id)
-    count = Word.objects.all().count()
-    rand_ids = sample(range(1, count+1), 4 if count >= 4 else count)
-    if  word.id in rand_ids:
-        rand_ids.remove(word.id)
-    random_words = Word.objects.filter(id__in=rand_ids)
-
-    return render(request, 'search/detail.html', {'word': word, 'random_words': random_words})
+    context['word'] = word
+    # count = Wordself.objects.all().count()
+    # rand_ids = sample(range(1, count+1), 4 if count >= 4 else count)
+    # if  word.id in rand_ids:
+        # rand_ids.remove(word.id)
+    context['random_words'] = Word.objects.all().exclude(pk = word.pk).order_by('?')[:4]
+    context['meanings'] = Meaning.objects.filter(word=word)
+    return render(request, 'search/detail.html', context)
 
 
 def aprobar(request):
@@ -45,7 +53,7 @@ def aprobar(request):
                     word.delete()
         else:
             form = ApproveWord()
-            
+
         context = {'words' : words, 'form': form}
         return render(request, 'search/aprobar.html', context)
     else:
@@ -57,6 +65,7 @@ def new_word(request):
     context = {'latest_word_list': latest_word_list}
 
     if request.method == "POST":
+        print(request.POST)
         form = NewWord(request.POST)
         if form.is_valid():
             word_text = request.POST['word']
@@ -74,8 +83,7 @@ def new_word(request):
             word = Word(word_text=request.POST['word'], pub_date=timezone.now(), word_examples=example, word_origin=origin)
             word.save()
 
-            all_meanings = request.POST['meaning']
-            meanings = []
+            all_meanings = request.POST.getlist('meaning')
             for m in all_meanings:
                 meaning = Meaning(meaning_text=m, word=word)
                 meaning.save()
@@ -90,6 +98,10 @@ def search(request):
     number = len(Word.objects.all())
     words = Word.objects.filter(word_text__contains=searcher, approved=True)
     # Caso donde no haya palabras que coincidan con la busqueda
+    list_word = []
+    for word in words:
+        meaning = Meaning.objects.filter(word=word).first()
+        list_word.append((word,meaning))
     if len(words) == 0:
         context = {'busqueda' : searcher}
         return render(request, 'search/no_results.html', context)
@@ -103,7 +115,7 @@ def search(request):
       catalogo = paginator.page(paginator.num_pages)
     pagscount = paginator.count
     number = len(Word.objects.all())
-    context = {'busqueda' : words, 'pagscount' : pagscount, 'number' : number}
+    context = {'busqueda' : list_word, 'pagscount' : pagscount, 'number' : number}
   return render(request, "search/results.html", context)
 
 def search_letter(request):
@@ -116,6 +128,10 @@ def search_letter(request):
     for word in words:
         if str(word).startswith(searcher):
             wordlist.append(word)
+    list_word = []
+    for word in wordlist:
+        meaning = Meaning.objects.filter(word=word).first()
+        list_word.append((word,meaning))
     # Caso donde no haya palabras con esa letra
     if len(wordlist) == 0:
         return render(request, 'search/no_results.html')
@@ -129,5 +145,5 @@ def search_letter(request):
       catalogo = paginator.page(paginator.num_pages)
     pagscount = paginator.count
     number = len(Word.objects.all())
-    context = {'busqueda' : wordlist, 'pagscount' : pagscount, 'number' : number}
+    context = {'busqueda' : list_word, 'pagscount' : pagscount, 'number' : number}
   return render(request, "search/results.html", context)

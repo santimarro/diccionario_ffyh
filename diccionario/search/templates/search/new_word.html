@@ -44,37 +44,49 @@
 
 
         <h4 class="grey-text text-darken-3 left-align">Añadir palabra</h4>
-        <font size="3">¿Te sumás a hacer un diccionario entre todos?<br>
-La Sofìa Cartonera te invita a armar un glosario de voces de uso cotidiano que no aparecen contempladas en los lexicones que propone la Real Academia Española.<br>
-Por ejemplo:<br>
-<div class="grey lighten-3" style="padding:20px;">
-<b><u>Buluquita:</u></b> diminutivo de buluca, sustantivo, dícese de las frutas del paraíso, verdes o maduras, que por su forma esférica y su tamaño sirven como proyectiles en juegos bélicos de niños en algunos barrios de la ciudad de Córdoba, Argentina.
-</div>
-<br>
-<b class="red-text">ACORDATE: LA CONDICIÓN PARA PARTICIPAR ES QUE LA PALABRA NO ESTÉ DEFINIDA EN LOS DICCIONARIOS DE LA RAE.</b><br> </font>
-<br>
+        <font size="3">¿Te sumás a hacer un diccionario entre todos?<br> La Sofìa Cartonera te invita a armar un glosario de voces de uso cotidiano que no aparecen contempladas en los lexicones que propone la Real Academia Española.<br> Por ejemplo:<br>
+          <div class="grey lighten-3" style="padding:20px;">
+            <b><u>Buluquita:</u></b> diminutivo de buluca, sustantivo, dícese de las frutas del paraíso, verdes o maduras, que por su forma esférica y su tamaño sirven como proyectiles en juegos bélicos de niños en algunos barrios de la ciudad de Córdoba,
+            Argentina.
+          </div>
+          <br>
+          <b class="red-text">ACORDATE: LA CONDICIÓN PARA PARTICIPAR ES QUE LA PALABRA NO ESTÉ DEFINIDA EN LOS DICCIONARIOS DE LA RAE.</b><br> </font>
+        <br>
         <h5 class="left-align">Completa el siguiente formulario para añadir una nueva palabra:
         </h5>
-            <div class="black-text">
-              <form action="/search/new/" method="POST">
-                {%csrf_token%}
-                <p class="" style="display:inline-block"><b>{{form.word.label}}:</b></p>
-                <div style="display:inline-block; margin-left:20px;">{{form.word}}</div><br>
+        <div class="black-text">
+          <form action="/search/new/" method="POST">
+            {%csrf_token%}
+            <p class="" style="display:inline-block"><b>{{form.word.label}}:</b></p>
+            <div style="display:inline-block; margin-left:20px;">{{form.word}}</div><br>
 
-                <p class="" style="display:inline-block"><b>{{form.meaning.label}}:</b></p>
-                <div style="display:inline-block; margin-left:20px;">{{form.meaning}}</div><br>
+            <p class="" style="display:inline-block"><b>{{form.meaning.label}}:</b></p>
+            <div style="display:inline-block; margin-left:20px;">{{form.meaning}}</div><br>
+            <input type="button" class="btn black" id="more_fields" onclick="add_fields();" style="display:inline-block" value="Agregar otro significado" />
 
-                <p class="" style="display:inline-block"><b>{{form.example.label}}:</b></p>
-                <div style="display:inline-block; margin-left:20px;">{{form.example}}</div><br>
 
-                <p class="" style="display:inline-block"><b>{{form.origin.label}}:</b></p>
-                <div style="display:inline-block; margin-left:20px;">{{form.origin}}</div><br>
-                <button type="submit" class="btn waves-effect green" name="button"><i class="material-icons right">send</i>Enviar</button>
-              </form>
-            </div>
+              <div class="content" id="wrapper">
+
+              </div>
+
+
+            <p class="" style="display:inline-block"><b>{{form.example.label}}:</b></p>
+            <div style="display:inline-block; margin-left:20px;">{{form.example}}</div><br>
+
+            <p class="" style="display:inline-block"><b>{{form.origin.label}}:</b></p>
+            <div style="display:inline-block; margin-left:20px;">{{form.origin}}</div><br>
+            <button type="submit" class="btn waves-effect green" name="button"><i class="material-icons right">send</i>Enviar</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+
+<script type="text/javascript">
+  function add_fields() {
+    document.getElementById('wrapper').innerHTML += '{{form.meaning}}';
+  }
+</script>
 {% endblock %} {% block javascript %} {% endblock %}
