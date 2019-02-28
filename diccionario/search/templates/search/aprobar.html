@@ -49,13 +49,17 @@
         {% else %}
 
         <h5 class="left-align"><b>Acepta las palabras nuevas!</b></h5> {% endif %}
-        {% for word in words %}
+        {% for word, meanings in words %}
         <div class="grey lighten-3" style="padding:20px; margin-bottom:20px;">
 
 
         <p>
           <form action="/search/approve/" method="POST">
-            {%csrf_token%} <font size="5"><b>{{word.word_text}}:</b> {{word.word_meaning}}</font> <br> <font size="3"> <b> Ejemplo:</b> {{word.word_examples}}</font> <br> <b>Origen:</b> {{word.word_origin}}<br>
+            {%csrf_token%} <font size="5"><b>{{word.word_text}}:</b> 
+            {% for meaning in meanings %}
+            <p> {{forloop.counter}}- {{ meaning.meaning_text }}</p> <button type="submit" class="btn waves-effect red" name="button" value="eliminar_significado/{{meaning.id}}"><i class="material-icons right">delete</i>Eliminar</button>
+            {% endfor %}
+            </font> <br> <font size="3"> <b> Ejemplo:</b> {{word.word_examples}}</font> <br> <b>Origen:</b> {{word.word_origin}}<br>
             <br>
             <input type="hidden" name="word_id" value="{{word.id}}">
             <button type="submit" class="btn waves-effect green" name="button" value="aprobar"><i class="material-icons right">check</i>Aprobar</button>

@@ -40,7 +40,6 @@ def detail(request, word_id):
 
 def aprobar(request):
     if request.user.is_superuser:
-        words = Word.objects.filter(approved=False)
         if request.method == "POST":
             form = ApproveWord(request.POST)
             if form.is_valid():
@@ -51,10 +50,25 @@ def aprobar(request):
                     word.save()
                 elif request.POST['button'] == 'eliminar':
                     word.delete()
+
+                else:
+                    # Esto esta medio cualquiera pero es la forma rapida que se me ocurrio.
+                    # Basicamente cada boton eliminar del form aprobar tiene seguido de un /
+                    # el id del meaning a eliminar. Si ya se, pero funciona xD.
+
+                    meaning_id = request.POST['button'].split('/')[1]
+                    meaning = Meaning.objects.filter(pk=meaning_id)
+                    meaning.delete()
         else:
             form = ApproveWord()
 
-        context = {'words' : words, 'form': form}
+        words = Word.objects.filter(approved=False)
+        pairs = []
+        for w in words:
+            meanings = [m for m in Meaning.objects.filter(word=w)]
+            pairs.append((w, meanings))
+
+        context = {'words' : pairs, 'form': form}
         return render(request, 'search/aprobar.html', context)
     else:
         redirect('/search')
@@ -87,6 +101,7 @@ def new_word(request):
             for m in all_meanings:
                 meaning = Meaning(meaning_text=m, word=word)
                 meaning.save()
+            redirect('/search')
     else:
         form = NewWord()
     return render(request, 'search/new_word.html', {'form': form}, context)
