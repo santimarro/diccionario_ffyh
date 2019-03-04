@@ -27,11 +27,11 @@
         {% endif %}
       </div>
 
-      <div class="blue z-depth-5 rcorners3 hide-on-med-and-down" style="margin-top:30px; min-height:300px;">
-        <p class="center-align white-text" style="line-height:300px;">Cartel o Publicidad</p>
+      <div class="container2 z-depth-5 rcorners3 center-align white" style="margin-top:20px; padding:20px; min-height:50px; line-height:50px;">
+        <img src="/media/Sofiacart.png" style="width:100%;">
       </div>
-      <div class="black z-depth-5 rcorners3 hide-on-med-and-down" style="margin-top:30px; min-height:300px;">
-        <p class="center-align white-text" style="line-height:300px;">Cartel o Publicidad</p>
+      <div class="container2 z-depth-5 rcorners3 center-align white" style="margin-top:20px; min-height:50px; line-height:50px;">
+        <img src="/media/foro-lenguas-mapa.jpg" class="materialboxed" style="width:100%;">
       </div>
 
 
@@ -55,7 +55,7 @@
 
         <p>
           <form action="/search/approve/" method="POST">
-            {%csrf_token%} <font size="5"><b>{{word.word_text}}:</b> 
+            {%csrf_token%} <font size="5"><b>{{word.word_text}}:</b>
             {% for meaning in meanings %}
             <p> {{forloop.counter}}- {{ meaning.meaning_text }}</p> <button type="submit" class="btn waves-effect red" name="button" value="eliminar_significado/{{meaning.id}}"><i class="material-icons right">delete</i>Eliminar</button>
             {% endfor %}
